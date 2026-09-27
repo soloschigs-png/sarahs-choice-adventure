@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah's Choice Adventure</title>
+<style>body{font-family:system-ui;background:#111;color:#fff;max-width:600px;margin:0 auto;padding:20px;text-align:center}button{padding:15px 25px;margin:10px;font-size:18px;border:none;border-radius:10px;background:#a855f7;color:white;width:80%}</style>
+</head>
+<body>
+<h1>Sarah's Choice Adventure</h1>
+<div id="game"></div>
+<script>
+const scenes={start:{text:"Sarah wakes up in a magical forest. Two paths appear.",choices:[{t:"Go left to the glowing river",next:"river"},{t:"Go right to the dark cave",next:"cave"}]},river:{text:"The river sings! A fairy offers you a wish.",choices:[{t:"Wish for courage",next:"win"},{t:"Wish for treasure",next:"lose"}]},cave:{text:"The cave is cold. A dragon sleeps guarding a key.",choices:[{t:"Take the key quietly",next:"win"},{t:"Wake the dragon",next:"lose"}]},win:{text:"YOU WIN! Sarah becomes the hero!",choices:[{t:"Play Again",next:"start"}]},lose:{text:"Oh no! Try again...",choices:[{t:"Try Again",next:"start"}]}};let cur="start";function render(){const s=scenes[cur];document.getElementById("game").innerHTML=`<h2>${s.text}</h2>`+s.choices.map(c=>`<button onclick="go('${c.next}')">${c.t}</button>`).join("");}function go(n){cur=n;render();}render();
+</script>
+</body>
+</html>
